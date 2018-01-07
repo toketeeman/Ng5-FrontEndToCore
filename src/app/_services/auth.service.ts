@@ -31,15 +31,15 @@ export class AuthService {
     return new RequestOptions({headers: headers});
   }
 
-  private handleError(error: any) {
-    const applicationError = error.headers.get('Application-Error');
+  private handleError(error: Response) {         // The error parameter is actually a response object.
+    const applicationError = error.headers.get('Application-Error');  // Thus error has a headers property.
     if (applicationError) {
       return Observable.throw(applicationError);
     }
-    const serverError = error.json();
-    let modelStateErrors = '';
+    const serverError = error.json();     // json() jsonifies only the error's body.
+    let modelStateErrors = '';            // Empty string is falsy.
     if (serverError) {
-      for (const key in serverError) {
+      for (const key in serverError) {    // Model state errors arrive as an array of messages.
         if (serverError[key]) {
           modelStateErrors += serverError[key] + '\n';
         }
@@ -49,5 +49,4 @@ export class AuthService {
       modelStateErrors || 'Server error'
     )
   }
-
 }
