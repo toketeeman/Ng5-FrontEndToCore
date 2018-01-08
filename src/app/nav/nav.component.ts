@@ -30,6 +30,6 @@ export class NavComponent implements OnInit {
   }
 
   loggedIn() {
-    return this.authService.loggedin();
+    return this.authService.loggedIn();
   }
 }

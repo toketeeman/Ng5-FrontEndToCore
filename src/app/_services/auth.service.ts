@@ -21,7 +21,6 @@ export class AuthService {
       if (user) {
         localStorage.setItem('token', user.tokenString);
         this.decodedToken = this.jwtHelper.decodeToken(user.tokenString);
-        console.log(this.decodedToken);
         this.userToken = user.tokenString;
       }
     }).catch(this.handleError);
@@ -31,7 +30,7 @@ export class AuthService {
     return this.http.post(this.baseUrl + 'register', model, this.requestOptions()).catch(this.handleError);  // Returns an observable.
   }
 
-  loggedin() {
+  loggedIn() {
     return tokenNotExpired('token');
   }
 
