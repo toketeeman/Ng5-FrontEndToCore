@@ -11,6 +11,7 @@ import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AlertifyService } from './_services/alertify.service';
+import { TitleCasePipe } from '@angular/common';
 
 @NgModule({
 	declarations: [
@@ -27,7 +28,8 @@ import { AlertifyService } from './_services/alertify.service';
 	],
 	providers: [
 		AuthService,
-		AlertifyService
+		AlertifyService,
+		TitleCasePipe
 	],
 	bootstrap: [AppComponent]
 })
