@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { TitleCasePipe } from '@angular/common';
+import { Router } from '@angular/router';
+
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
-import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +13,10 @@ import { TitleCasePipe } from '@angular/common';
 export class NavComponent implements OnInit {
   model: any = {};
 
-  constructor(private authService: AuthService, private alertify: AlertifyService, private titleCase: TitleCasePipe) { }
+  constructor(private authService: AuthService, 
+              private alertify: AlertifyService, 
+              private titleCase: TitleCasePipe,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -20,7 +25,9 @@ export class NavComponent implements OnInit {
     this.authService.login(this.model).subscribe(data => {
       this.alertify.success('logged in successfully');
     }, error => {
-      this.alertify.error(error);   // Previous observable throws come here.
+      this.alertify.error('failed to login');   // Previous observable throws come here.
+    }, () => {
+      this.router.navigate(['/members']);       // Come here when observable "completes".
     });
   }
 
@@ -28,6 +35,7 @@ export class NavComponent implements OnInit {
     this.authService.userToken = null;
     localStorage.removeItem('token');
     this.alertify.message('logged out');
+    this.router.navigate(['/home']);
   }
 
   loggedIn() {
