@@ -39,7 +39,7 @@ export class AuthService {
     return new RequestOptions({headers: headers});
   }
 
-  private handleError(error: Response) {         // The error parameter is actually a response object.
+  private handleError(error: Response) {         // The error parameter here is actually a response object.
     const applicationError = error.headers.get('Application-Error');  // Thus error has a headers property.
     if (applicationError) {
       return Observable.throw(applicationError);
