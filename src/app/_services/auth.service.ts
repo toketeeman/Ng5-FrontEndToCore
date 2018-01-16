@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   loggedIn() {
-    return tokenNotExpired('token');
+    return tokenNotExpired('token');  // 'token' is the default for angular2-jwt. So we can just use '' instead. 
   }
 
   private requestOptions() {

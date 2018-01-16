@@ -40,7 +40,7 @@ img {                      /* For gracefully transitioning back to original stat
 
 .member-icons {
   position: absolute;
-  bottom: -30%;           /* sets up invisible starting position below panel for animation */
+  bottom: -30%;           /* sets up invisible starting position below panel for animated hover below. */
   left: 0;
   right: 0;
   margin-right: auto;

@@ -4,29 +4,47 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { AuthHttp } from 'angular2-jwt';    // The AuthHttp service class to be configured upon instantiation/injection.
 
 import { environment } from '../../environments/environment';
 import { User } from '../_models/User';
+
 
 @Injectable()
 export class UserService {
 
   baseUrl = environment.apiUrl;
 
-  constructor(private http: Http) { }
+  // Conventional Http approach.
+
+  //constructor(private http: Http) { }
+  
+  // getUsers(): Observable<User[]> {
+  //   return this.http
+  //                 .get(this.baseUrl + 'users', this.headers())   // Pass headers (including JWT) as parameter.
+  //                 .map(response => <User[]>response.json())
+  //                 .catch(this.handleError);
+  // }
+
+  // private headers() {
+  //   let token = localStorage.getItem('token');
+  //   if (token) {
+  //     let headers = new Headers({'authorization': 'Bearer ' + token});
+  //     headers.append('Content-Type', 'application/json');
+  //     return new RequestOptions({headers: headers});
+  //   }  
+  // }
+
+
+  // Angular2-jwt approach.
+
+  constructor(private authHttp: AuthHttp) { }
 
   getUsers(): Observable<User[]> {
-    return this.http.get(this.baseUrl + 'users', 
-                         this.jwt()).map(response => <User[]>response.json()).catch(this.handleError);
-  }
-
-  private jwt() {
-    let token = localStorage.getItem('token');
-    if (token) {
-      let headers = new Headers({'authorization': 'Bearer ' + token});
-      headers.append('Content-Type', 'application/json');
-      return new RequestOptions({headers: headers});
-    }  
+    return this.authHttp
+                  .get(this.baseUrl + 'users')                // Headers are passed automatically! See auth.module
+                  .map(response => <User[]>response.json())
+                  .catch(this.handleError);
   }
 
   private handleError(error: Response) {         // The error parameter here is actually a response object.

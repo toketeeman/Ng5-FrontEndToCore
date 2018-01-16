@@ -6,6 +6,7 @@ import { BsDropdownModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 
+
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
@@ -19,6 +20,7 @@ import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserService } from './_services/user.service';
 import { MemberCardComponent } from './members/member-card/member-card.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
 	declarations: [
@@ -36,7 +38,8 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 		HttpModule,
 		FormsModule,
 		BsDropdownModule.forRoot(),
-		RouterModule.forRoot(appRoutes)
+		RouterModule.forRoot(appRoutes),
+		AuthModule
 	],
 	providers: [
 		AuthService,
