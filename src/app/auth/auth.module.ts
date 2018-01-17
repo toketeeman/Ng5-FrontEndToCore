@@ -14,7 +14,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 
 @NgModule({
   declarations: [
-    AuthComponent
+    AuthComponent                           // Dutifully declared, but not used!
   ],
   providers: [
     {
