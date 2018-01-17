@@ -38,12 +38,19 @@ export class UserService {
 
   // Angular2-jwt approach.
 
-  constructor(private authHttp: AuthHttp) { }
+  constructor(private authHttp: AuthHttp) { }           // AuthHttp injection here invokes service factory. See auth.module.
 
   getUsers(): Observable<User[]> {
     return this.authHttp
                   .get(this.baseUrl + 'users')                // Headers are passed automatically! See auth.module
                   .map(response => <User[]>response.json())
+                  .catch(this.handleError);
+  }
+
+  getUser(id): Observable<User> {
+    return this.authHttp 
+                  .get(this.baseUrl + 'users/' + id)
+                  .map(response => <User>response.json())
                   .catch(this.handleError);
   }
 

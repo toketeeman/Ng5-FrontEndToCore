@@ -14,7 +14,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 @NgModule({
   providers: [
     {
-      provide: AuthHttp,                    // Maps AuthHttp to the configured-on-the-fly service instance.
+      provide: AuthHttp,                    // Maps AuthHttp to the configured-on-the-fly service instance during injection.
       useFactory: authHttpServiceFactory,
       deps: [Http, RequestOptions]
     }
