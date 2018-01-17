@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { AuthComponent } from './auth.component';
 
 // Http requests are pre-configured here!
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -12,6 +13,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 }
 
 @NgModule({
+  declarations: [
+    AuthComponent
+  ],
   providers: [
     {
       provide: AuthHttp,                    // Maps AuthHttp to the configured-on-the-fly service instance during injection.
