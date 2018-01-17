@@ -2,7 +2,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 
@@ -41,7 +41,8 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 		FormsModule,
 		BsDropdownModule.forRoot(),
 		RouterModule.forRoot(appRoutes),
-		AuthModule
+		AuthModule,
+		TabsModule.forRoot()
 	],
 	providers: [
 		AuthService,
