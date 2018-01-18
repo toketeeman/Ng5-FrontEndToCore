@@ -13,7 +13,6 @@ import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AlertifyService } from './_services/alertify.service';
-import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
@@ -23,7 +22,10 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { AuthModule } from './auth/auth.module';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
+import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 
 @NgModule({
 	declarations: [
@@ -35,7 +37,8 @@ import { MemberListResolver } from './_resolvers/member-list.resolver';
     ListsComponent,
 		MessagesComponent,
 		MemberCardComponent,
-		MemberDetailComponent
+		MemberDetailComponent,
+		MemberEditComponent
 ],
 	imports: [
 		BrowserModule,
@@ -54,7 +57,8 @@ import { MemberListResolver } from './_resolvers/member-list.resolver';
 		AuthGuard,
 		UserService,
 		MemberDetailResolver,
-		MemberListResolver
+		MemberListResolver,
+		MemberEditResolver
 	],
 	bootstrap: [AppComponent]
 })
