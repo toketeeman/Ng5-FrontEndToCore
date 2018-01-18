@@ -49,7 +49,7 @@ export class UserService {
 
   getUser(id): Observable<User> {
     return this.authHttp 
-                  .get(this.baseUrl + 'users/' + id)
+                  .get(this.baseUrl + 'users/' + id)          // Headers are passed automatically! See auth.module
                   .map(response => <User>response.json())
                   .catch(this.handleError);
   }

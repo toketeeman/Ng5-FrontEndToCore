@@ -18,12 +18,20 @@ export class MemberDetailComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadUser();
+    // Old way, without resolver.
+    //
+    //this.loadUser();
+
+    this.route.data.subscribe(data => {     // Grab the resolved user here.
+      this.user = data['resolvedUser'];
+    })
   }
 
-  loadUser() {
-    this.userService.getUser(+this.route.snapshot.params['id']).subscribe((user: User) => {this.user = user;},
-                                                                           error => {this.alertify.error(error)});
-  }
+  // Old way, without resolver.
+  //
+  // loadUser() {
+  //   this.userService.getUser(+this.route.snapshot.params['id']).subscribe((user: User) => {this.user = user;},
+  //                                                                          error => {this.alertify.error(error)});
+  // }
 
 }
