@@ -12,9 +12,10 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 
 export const appRoutes:Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full'},     // Always include this! Avoids confusion with the dummy empty path below.
   { path: 'home', component: HomeComponent},
   {
-    path: '',
+    path: '',     // Dummy empty path used for grouping.
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
