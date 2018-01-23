@@ -10,6 +10,7 @@ import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 export const appRoutes:Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},     // Always include this! Avoids confusion with the dummy empty path below.
@@ -21,7 +22,9 @@ export const appRoutes:Routes = [
     children: [
       { path: 'members', component: MemberListComponent, resolve: {resolvedUsers: MemberListResolver}},
       { path: 'members/:id', component: MemberDetailComponent, resolve: {resolvedUser: MemberDetailResolver}},
-      { path: 'member/edit', component: MemberEditComponent, resolve: {resolvedUser: MemberEditResolver}},
+      { path: 'member/edit', component: MemberEditComponent, 
+                             resolve: {resolvedUser: MemberEditResolver},
+                             canDeactivate: [PreventUnsavedChanges]},
       { path: 'messages', component: MessagesComponent},
       { path: 'lists', component: ListsComponent}
     ]
